@@ -1,6 +1,7 @@
 from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 
+from take_home.questions.api.views import QuestionViewSet, AnswerViewSet, ResponseViewSet, QuestionCategoryViewSet
 from take_home.users.api.views import UserViewSet
 
 if settings.DEBUG:
@@ -9,6 +10,10 @@ else:
     router = SimpleRouter()
 
 router.register("users", UserViewSet)
+router.register("questions", QuestionViewSet)
+router.register("question_categories", QuestionCategoryViewSet)
+router.register("answers", AnswerViewSet)
+router.register("responses", ResponseViewSet)
 
 
 app_name = "api"

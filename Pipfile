@@ -23,6 +23,7 @@ django-storages = {version = "==1.11.1", extras = ["boto3"]}
 django-anymail = {version = "==8.2", extras = ["sendgrid"]}
 Pillow = "==8.2.0"
 Django = "==3.1.12"
+dj-rest-auth = "*"
 
 [dev-packages]
 ipdb = "==0.13.7"

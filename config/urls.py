@@ -14,6 +14,7 @@ urlpatterns = [
     # User management
     path("users/", include("take_home.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
+    path("api-auth/", include("rest_framework.urls")),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -21,8 +22,9 @@ urlpatterns = [
 urlpatterns += [
     # API base url
     path("api/", include("config.api_router")),
-    # DRF auth token
-    path("auth-token/", obtain_auth_token),
+    # dj rest auth
+    path("auth/", include("dj_rest_auth.urls")),
+    path("auth/registration/", include("dj_rest_auth.registration.urls")),
 ]
 
 if settings.DEBUG:
