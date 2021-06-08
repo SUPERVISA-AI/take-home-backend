@@ -5,8 +5,8 @@ from django.contrib.auth import get_user_model
 from rest_framework import viewsets
 
 from .serializers import AnswerSerializer, QuestionSerializer, ResponseSerializer, ResponseWriteSerializer, \
-    QuestionCategorySerializer
-from take_home.questions.models import Answer, Question, Response, QuestionCategory
+    QuestionListSerializer
+from take_home.questions.models import Answer, Question, Response, QuestionList
 
 User = get_user_model()
 
@@ -17,9 +17,9 @@ class QuestionViewSet(viewsets.ReadOnlyModelViewSet):
 
     def get_queryset(self, *args, **kwargs):
         queryset = Question.objects.all()
-        category = self.request.query_params.get("category")
-        if category is not None:
-            queryset = queryset.filter(question_category=category)
+        question_list = self.request.query_params.get("list")
+        if question_list is not None:
+            queryset = queryset.filter(question_list=question_list)
         return queryset
 
 
@@ -48,6 +48,6 @@ class ResponseViewSet(viewsets.ModelViewSet):
         return ResponseSerializer
 
 
-class QuestionCategoryViewSet(viewsets.ReadOnlyModelViewSet):
-    serializer_class = QuestionCategorySerializer
-    queryset = QuestionCategory.objects.all()
+class QuestionListViewSet(viewsets.ReadOnlyModelViewSet):
+    serializer_class = QuestionListSerializer
+    queryset = QuestionList.objects.all()

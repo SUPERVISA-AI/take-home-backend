@@ -1,7 +1,7 @@
 from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 
-from take_home.questions.api.views import QuestionViewSet, AnswerViewSet, ResponseViewSet, QuestionCategoryViewSet
+from take_home.questions.api.views import QuestionViewSet, AnswerViewSet, ResponseViewSet, QuestionListViewSet
 from take_home.users.api.views import UserViewSet
 
 if settings.DEBUG:
@@ -11,7 +11,7 @@ else:
 
 router.register("users", UserViewSet)
 router.register("questions", QuestionViewSet)
-router.register("question_categories", QuestionCategoryViewSet)
+router.register("question_lists", QuestionListViewSet)
 router.register("answers", AnswerViewSet)
 router.register("responses", ResponseViewSet)
 

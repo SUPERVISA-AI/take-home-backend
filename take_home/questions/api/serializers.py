@@ -1,14 +1,14 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from take_home.questions.models import Question, Answer, Response, QuestionCategory
+from take_home.questions.models import Question, Answer, Response, QuestionList
 
 User = get_user_model()
 
 
-class QuestionCategorySerializer(serializers.ModelSerializer):
+class QuestionListSerializer(serializers.ModelSerializer):
     class Meta:
-        model = QuestionCategory
+        model = QuestionList
         fields = ["id", "name"]
 
 
@@ -16,7 +16,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Question
-        fields = ["id", "text", "question_category", "question_type", "choice_list"]
+        fields = ["id", "text", "question_list", "question_type", "choice_list"]
 
 
 class QuestionAnswerSerializer(serializers.ModelSerializer):

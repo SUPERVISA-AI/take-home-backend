@@ -10,11 +10,8 @@ class Response(models.Model):
         return f"{self.id}: {self.user}"
 
 
-class QuestionCategory(models.Model):
+class QuestionList(models.Model):
     name = models.CharField(max_length=255)
-
-    class Meta:
-        verbose_name_plural = _("Question Categories")
 
     def __str__(self):
         return self.name
@@ -29,14 +26,14 @@ class QuestionType(models.TextChoices):
 
 class Question(models.Model):
     text = models.CharField(max_length=255)
-    question_category = models.ForeignKey(QuestionCategory, on_delete=models.CASCADE, related_name="questions")
+    question_list = models.ForeignKey(QuestionList, on_delete=models.CASCADE, related_name="questions")
     question_type = models.CharField(
         max_length=6, choices=QuestionType.choices, default=QuestionType.TEXT,
     )
     choices = models.CharField(max_length=255, null=True, blank=True, help_text=_("Text choices separated by comma"))
 
     def __str__(self):
-        return f"{self.id}: {self.text} - {self.question_type} - {self.question_category}"
+        return f"{self.id}: {self.text} - {self.question_type} - {self.question_list}"
 
     @property
     def choice_list(self):
