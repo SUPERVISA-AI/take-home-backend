@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import response, status, viewsets
 
 from take_home.questions.models import Answer, Question, QuestionList, Response
 
@@ -37,6 +37,16 @@ class ResponseViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self, *args, **kwargs):
         return self.queryset.filter(user=self.request.user)
+
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+
+        # Use a different serializer with more data for the response
+        response_data = ResponseSerializer(serializer.instance).data
+        return response.Response(response_data, status=status.HTTP_201_CREATED, headers=headers)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
