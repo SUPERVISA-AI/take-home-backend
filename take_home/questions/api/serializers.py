@@ -1,7 +1,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from take_home.questions.models import Question, Answer, Response, QuestionList
+from take_home.questions.models import Answer, Question, QuestionList, Response
 
 User = get_user_model()
 
@@ -13,14 +13,12 @@ class QuestionListSerializer(serializers.ModelSerializer):
 
 
 class QuestionSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Question
         fields = ["id", "text", "question_list", "question_type", "choice_list"]
 
 
 class QuestionAnswerSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Question
         fields = ["id", "text", "choice_list"]
@@ -35,7 +33,6 @@ class AnswerSerializer(serializers.ModelSerializer):
 
 
 class AnswerWriteSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Answer
         fields = ["text", "question"]

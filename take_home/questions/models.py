@@ -1,6 +1,6 @@
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from django.conf import settings
 
 
 class Response(models.Model):
@@ -28,7 +28,9 @@ class Question(models.Model):
     text = models.CharField(max_length=255)
     question_list = models.ForeignKey(QuestionList, on_delete=models.CASCADE, related_name="questions")
     question_type = models.CharField(
-        max_length=6, choices=QuestionType.choices, default=QuestionType.TEXT,
+        max_length=6,
+        choices=QuestionType.choices,
+        default=QuestionType.TEXT,
     )
     choices = models.CharField(max_length=255, null=True, blank=True, help_text=_("Text choices separated by comma"))
 

@@ -1,14 +1,14 @@
-from django.contrib.auth import get_user_model
-# from rest_framework import status
-# from rest_framework.decorators import action
-# from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 from rest_framework import viewsets
 
-from .serializers import AnswerSerializer, QuestionSerializer, ResponseSerializer, ResponseWriteSerializer, \
-    QuestionListSerializer
-from take_home.questions.models import Answer, Question, Response, QuestionList
+from take_home.questions.models import Answer, Question, QuestionList, Response
 
-User = get_user_model()
+from .serializers import (
+    AnswerSerializer,
+    QuestionListSerializer,
+    QuestionSerializer,
+    ResponseSerializer,
+    ResponseWriteSerializer,
+)
 
 
 class QuestionViewSet(viewsets.ReadOnlyModelViewSet):

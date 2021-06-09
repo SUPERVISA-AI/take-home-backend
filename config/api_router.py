@@ -1,7 +1,12 @@
 from django.conf import settings
 from rest_framework.routers import DefaultRouter, SimpleRouter
 
-from take_home.questions.api.views import QuestionViewSet, AnswerViewSet, ResponseViewSet, QuestionListViewSet
+from take_home.questions.api.views import (
+    AnswerViewSet,
+    QuestionListViewSet,
+    QuestionViewSet,
+    ResponseViewSet,
+)
 from take_home.users.api.views import UserViewSet
 
 if settings.DEBUG:
