@@ -4,10 +4,12 @@ from django.utils.translation import gettext_lazy as _
 
 
 class Response(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="responses")
 
     def __str__(self):
-        return f"{self.id}: {self.user}"
+        return f"{self.id}: {self.user} - {self.created_at.strftime('%Y-%m-%d %H:%M')}"
 
 
 class QuestionList(models.Model):

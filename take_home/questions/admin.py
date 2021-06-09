@@ -12,6 +12,7 @@ class AnswerInline(admin.StackedInline):
 @admin.register(Response)
 class ResponseAdmin(admin.ModelAdmin):
     inlines = [AnswerInline]
+    readonly_fields = ("created_at", "updated_at")
 
 
 admin.site.register(Answer)
