@@ -37,7 +37,8 @@ class Question(models.Model):
     choices = models.CharField(max_length=255, null=True, blank=True, help_text=_("Text choices separated by comma"))
 
     def __str__(self):
-        return f"{self.id}: {self.text} - {self.question_type} - {self.question_list}"
+        choices = f" - [{self.choices}]" if self.question_type == QuestionType.MULTIPLE_CHOICE else ''
+        return f"{self.id}: ({self.question_list} / {self.question_type}{choices}) {self.text}"
 
     @property
     def choice_list(self):
