@@ -7,6 +7,7 @@ class AnswerInline(admin.StackedInline):
     model = Answer
     extra = 0
     show_change_link = True
+    readonly_fields = ("question", "text")
 
 
 @admin.register(Response)
